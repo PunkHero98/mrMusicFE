@@ -1,1 +1,34 @@
 @import 'tailwindcss';
+
+.press_start {
+  font-family: 'Press Start 2P', cursive;
+}
+
+.orbitron_400 {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 400;
+}
+
+.orbitron_500 {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 500;
+}
+
+.orbitron_600 {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 600;
+}
+
+.orbitron_700 {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+}
+
+.orbitron_800 {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 800;
+}
+.orbitron_900 {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+}
