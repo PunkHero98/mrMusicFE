@@ -32,3 +32,13 @@
   font-family: 'Orbitron', sans-serif;
   font-weight: 900;
 }
+
+@theme {
+  --color-primary: #f97316;
+  --color-accent: #fb923c;
+  --color-emphasis: #c2410c;
+  --color-warning: #fcd34d;
+  --color-background: #fdfaf6;
+  --color-text: #0f172a;
+  --color-muted: #9ca3af;
+}
