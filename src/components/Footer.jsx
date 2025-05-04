@@ -1,6 +1,6 @@
 const FooterComponent = () => {
     return (
-        <footer className="bg-gray-800 text-white py-4">
+        <footer className="bg-gray-800 text-white py-3 px-80">
             <div className="container mx-auto text-center">
                 <p>&copy; 2025 Mr Music. All rights reserved.</p>
                 <nav className="mt-2">

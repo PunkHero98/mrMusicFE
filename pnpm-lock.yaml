@@ -11,6 +11,9 @@ importers:
       '@tailwindcss/vite':
         specifier: ^4.1.5
         version: 4.1.5(vite@6.3.4(jiti@2.4.2)(lightningcss@1.29.2))
+      phosphor-react:
+        specifier: ^1.4.1
+        version: 1.4.1(react@19.1.0)
       react:
         specifier: ^19.0.0
         version: 19.1.0
@@ -1174,6 +1177,12 @@ packages:
   path-to-regexp@8.2.0:
     resolution: {integrity: sha512-TdrF7fW9Rphjq4RjrW0Kp2AW0Ahwu9sRGTkS6bvDi0SCwZlEZYmcfDbEsTz8RVk0EHIS/Vd1bv3JhG+1xZuAyQ==}
     engines: {node: '>=16'}
+
+  phosphor-react@1.4.1:
+    resolution: {integrity: sha512-gO5j7U0xZrdglTAYDYPACU4xDOFBTJmptrrB/GeR+tHhCZF3nUMyGmV/0hnloKjuTrOmpSFlbfOY78H39rgjUQ==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: '>=16'
 
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
@@ -2455,6 +2464,10 @@ snapshots:
   path-key@3.1.1: {}
 
   path-to-regexp@8.2.0: {}
+
+  phosphor-react@1.4.1(react@19.1.0):
+    dependencies:
+      react: 19.1.0
 
   picocolors@1.1.1: {}
 
