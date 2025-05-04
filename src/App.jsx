@@ -1,7 +1,7 @@
 import './style/App.css';
 import { Routes , Route } from 'react-router-dom';
 import HomeLayout from './layouts/home.layout';
-
+import SignUp from './pages/register/SignUp';
 function App() {
 
   return (
@@ -11,6 +11,7 @@ function App() {
         <Route path="about" element={<h1>About</h1>} />
         <Route path="contact" element={<h1>Contact</h1>} />
       </Route>
+      <Route path="/signup" element={<SignUp />} />
     </Routes>
   )
 }
