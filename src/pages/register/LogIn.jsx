@@ -14,7 +14,7 @@ const LogIn = () => {
         />
         <label className="block mb-2 text-text">PASSWORD</label>
         <input
-          type="text"
+          type="password"
           className="w-full p-2 mb-4 border-4 focus:ring-2 orbitron_500 border-muted"
         />
         <div className="flex items-center justify-between mb-2 text-[0.7rem]">
@@ -27,7 +27,7 @@ const LogIn = () => {
           </div>
         </div>
         <button className="w-full px-4 py-4 mt-2 text-center cursor-pointer bg-emphasis border-4 border-muted hover:bg-emphasis/90">
-          <span className="press_start text-lg text-warning">SIGN UP</span>
+          <span className="press_start text-lg text-warning">LOG IN</span>
         </button>
         <div className="flex items-center tracking-normal text-[0.7rem] justify-between mt-4 ">
           <p>Dont't have an account?</p>
