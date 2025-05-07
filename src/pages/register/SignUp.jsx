@@ -3,7 +3,7 @@ import React from "react";
 const SignUp = () => {
   return (
     <div className="m-0 p-0 h-screen items-center justify-center bg-warning/20">
-      <h1 className="press_start text-center text-4xl pt-8 pb-4 text-primary">LOG IN</h1>
+      <h1 className="press_start text-center text-4xl pt-8 pb-4 text-primary">SIGN UP</h1>
       <form className="press_start text-xs tracking-widest w-full max-w-lg mx-auto mt-2 p-8 bg-background shadow-lg shadow-black rounded-lg border-4 border-muted">
         <label className="block mb-2 text-text">USERNAME</label>
         <input
@@ -17,7 +17,7 @@ const SignUp = () => {
         />
         <label className="block mb-2 text-text">PASSWORD</label>
         <input
-          type="text"
+          type="password"
           className="w-full p-2 mb-4 border-4 focus:ring-2 orbitron_500 border-muted"
         />
         <label className="block mb-2 text-text">CONFIRM PASSWORD</label>
