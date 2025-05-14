@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const [form, setForm] = useState({
@@ -12,6 +13,7 @@ const SignUp = () => {
     type: "",
     text: "",
   });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setForm({
@@ -31,7 +33,7 @@ const SignUp = () => {
       return;
     }
     try {
-      const res = await fetch("http://localhost:8082/api/v1/users/signup", {
+      const res = await fetch("http://localhost:8082/api/v1/auth/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -120,7 +122,7 @@ const SignUp = () => {
           disabled={isLoading}
           className="w-full px-4 py-4 mt-2 text-center cursor-pointer bg-emphasis border-4 border-muted hover:bg-emphasis/90"
         >
-          <span className="press_start text-lg text-warning">SIGN UP</span>
+          <span className="press_start text-lg text-warningr">SIGN UP</span>
         </button>
         {message && (
           <div
@@ -133,7 +135,12 @@ const SignUp = () => {
         )}
         <div className="flex items-center tracking-normal text-[0.6rem] justify-between mt-4 ">
           <p>Already have an account?</p>
-          <p className="text-primary underline">LOG IN</p>
+          <p
+            onClick={() => navigate("/login")}
+            className="text-primary underline cursor-pointer"
+          >
+            LOG IN
+          </p>
         </div>
         <div>
           <p className="text-primary my-4 text-center">OR</p>

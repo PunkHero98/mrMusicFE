@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const LogIn = () => {
   const [form, setForm] = useState({
@@ -10,6 +11,7 @@ const LogIn = () => {
     type: "",
     text: "",
   });
+  const navigate = useNavigate();
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -20,7 +22,7 @@ const LogIn = () => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const res = await fetch("http://localhost:8082/api/v1/users/login", {
+      const res = await fetch("http://localhost:8082/api/v1/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -110,7 +112,12 @@ const LogIn = () => {
         )}
         <div className="flex items-center tracking-normal text-[0.7rem] justify-between mt-4 ">
           <p>Dont't have an account?</p>
-          <p className="text-primary underline">SIGN UP</p>
+          <p
+            onClick={() => navigate("/signup")}
+            className="text-primary underline cursor-pointer"
+          >
+            SIGN UP
+          </p>
         </div>
         <div>
           <p className="text-primary my-4 text-center">OR</p>
