@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const LogIn = () => {
   const [form, setForm] = useState({
@@ -22,21 +23,14 @@ const LogIn = () => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const res = await fetch("http://localhost:8082/api/v1/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: form.username,
-          password: form.password,
-        }),
+      const res = await axios.post("http://localhost:8082/api/v1/auth/login", {
+        username: form.username,
+        password: form.password,
       });
+      console.log("Login response data:", res.data);
+      const data = res.data;
 
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.message || "Something went wrong");
-      }
+      localStorage.setItem("x-access-token", data.user.accessToken);
 
       if (res.status === 200) {
         setMessage({
@@ -47,6 +41,7 @@ const LogIn = () => {
           username: "",
           password: "",
         });
+        navigate("/home");
       }
     } catch (error) {
       setMessage({
