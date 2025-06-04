@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { registerValidation } from "../../utils/validations/registerValidate";
 
-const SignUp = () => {
+const Register = () => {
   const [form, setForm] = useState({
     username: "",
     email: "",
@@ -14,17 +15,27 @@ const SignUp = () => {
     text: "",
   });
   const navigate = useNavigate();
-
+  const [errors, setErrors] = useState({});
   const handleChange = (e) => {
-    setForm({
-      ...form,
+    setForm((prev) => ({
+      ...prev,
       [e.target.name]: e.target.value,
-    });
+    }));
+    setErrors((prev) => ({
+      ...prev,
+      [e.target.name]: "",
+    }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
+    const validationErrors = registerValidation(form);
+    setErrors(validationErrors);
+    if (Object.keys(validationErrors).length > 0) {
+      setIsLoading(false);
+      return;
+    }
     if (form.password !== form.confirmPassword) {
       setMessage({
         type: "error",
@@ -33,7 +44,7 @@ const SignUp = () => {
       return;
     }
     try {
-      const res = await fetch("http://localhost:8082/api/v1/auth/signup", {
+      const res = await fetch("http://localhost:8082/api/v1/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -93,6 +104,9 @@ const SignUp = () => {
           onChange={handleChange}
           className="w-full p-2 mb-4 border-4 focus:ring-2 orbitron_500 border-muted"
         />
+        {errors.username && (
+          <p className="text-red-500 text-xs mb-4">{errors.username}</p>
+        )}
         <label className="block mb-2 text-text">EMAIL</label>
         <input
           type="email"
@@ -101,6 +115,9 @@ const SignUp = () => {
           onChange={handleChange}
           className="w-full p-2 mb-4 border-4 focus:ring-2 orbitron_500 border-muted"
         />
+        {errors.email && (
+          <p className="text-red-500 text-xs mb-4">{errors.email}</p>
+        )}
         <label className="block mb-2 text-text">PASSWORD</label>
         <input
           type="password"
@@ -109,6 +126,9 @@ const SignUp = () => {
           onChange={handleChange}
           className="w-full p-2 mb-4 border-4 focus:ring-2 orbitron_500 border-muted"
         />
+        {errors.password && (
+          <p className="text-red-500 text-xs mb-4">{errors.password}</p>
+        )}
         <label className="block mb-2 text-text">CONFIRM PASSWORD</label>
         <input
           type="password"
@@ -117,12 +137,17 @@ const SignUp = () => {
           onChange={handleChange}
           className="w-full p-2 mb-4 border-4 focus:ring-2 orbitron_500 border-muted"
         />
+        {errors.confirmPassword && (
+          <p className="text-red-500 text-xs mb-4">{errors.confirmPassword}</p>
+        )}
         <button
           type="submit"
           disabled={isLoading}
           className="w-full px-4 py-4 mt-2 text-center cursor-pointer bg-emphasis border-4 border-muted hover:bg-emphasis/90"
         >
-          <span className="press_start text-lg text-warningr">SIGN UP</span>
+          <span className="press_start text-lg text-warningr">
+            {isLoading ? "SIGN UP..." : "SIGN UP"}
+          </span>
         </button>
         {message && (
           <div
@@ -156,4 +181,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default Register;

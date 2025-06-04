@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { loginValidation } from "../../utils/validations/loginValidation.js";
 
 const LogIn = () => {
   const [form, setForm] = useState({
@@ -12,16 +13,27 @@ const LogIn = () => {
     type: "",
     text: "",
   });
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
   const handleChange = (e) => {
-    setForm({
-      ...form,
+    setForm((prev) => ({
+      ...prev,
       [e.target.name]: e.target.value,
-    });
+    }));
+    setErrors((prev) => ({
+      ...prev,
+      [e.target.name]: "",
+    }));
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
+    const validationErrors = loginValidation(form);
+    setErrors(validationErrors);
+    if (Object.keys(validationErrors).length > 0) {
+      setIsLoading(false);
+      return;
+    }
     try {
       const res = await axios.post("http://localhost:8082/api/v1/auth/login", {
         username: form.username,
@@ -69,6 +81,9 @@ const LogIn = () => {
           onChange={handleChange}
           className="w-full p-2 mb-4 border-4 focus:ring-2 orbitron_500 border-muted"
         />
+        {errors.username && (
+          <p className="text-red-500 text-xs mb-4">{errors.username}</p>
+        )}
         <label className="block mb-2 text-text">PASSWORD</label>
         <input
           type="password"
@@ -77,6 +92,9 @@ const LogIn = () => {
           onChange={handleChange}
           className="w-full p-2 mb-4 border-4 focus:ring-2 orbitron_500 border-muted"
         />
+        {errors.password && (
+          <p className="text-red-500 text-xs mb-4">{errors.password}</p>
+        )}
         <div className="flex items-center justify-between mb-2 text-[0.7rem]">
           <div className="flex items-center">
             <input
@@ -94,7 +112,9 @@ const LogIn = () => {
           disabled={isLoading}
           className="w-full px-4 py-4 mt-2 text-center cursor-pointer bg-emphasis border-4 border-muted hover:bg-emphasis/90"
         >
-          <span className="press_start text-lg text-warning">LOG IN</span>
+          <span className="press_start text-lg text-warning">
+            {isLoading ? "LOGGING IN..." : "LOG IN"}
+          </span>
         </button>
         {message && (
           <p
@@ -108,7 +128,7 @@ const LogIn = () => {
         <div className="flex items-center tracking-normal text-[0.7rem] justify-between mt-4 ">
           <p>Dont't have an account?</p>
           <p
-            onClick={() => navigate("/signup")}
+            onClick={() => navigate("/register")}
             className="text-primary underline cursor-pointer"
           >
             SIGN UP
