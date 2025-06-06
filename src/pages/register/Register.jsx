@@ -109,7 +109,7 @@ const Register = () => {
         )}
         <label className="block mb-2 text-text">EMAIL</label>
         <input
-          type="email"
+          type="text"
           name="email"
           value={form.email}
           onChange={handleChange}
